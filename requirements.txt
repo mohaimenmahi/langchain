@@ -20,3 +20,5 @@ huggingface-hub
 
 python-dotenv
 scikit-learn
+
+streamlit
