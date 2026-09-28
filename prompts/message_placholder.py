@@ -1,0 +1,19 @@
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
+# Chat Template 
+chat_template = ChatPromptTemplate([
+  ('system', 'You are a helpful customer support agent'),
+  MessagesPlaceholder(variable_name='chat_history'),
+  ('human', '{query}')
+])
+
+# load chat history
+chat_history = []
+with open('chat_history.txt') as f:
+  chat_history.extend(f.readlines()) # extend merges the last element with the list. if a = [1,2,3], a.extend([4, 5]) => a = [1,2,3,4,5]
+
+# create prompt
+prompt = chat_template.invoke({
+  'chat_history': chat_history, 
+  'query': ('human', 'Where is my refund?')
+})
